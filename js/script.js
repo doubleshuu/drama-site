@@ -1,770 +1,405 @@
-/* 基础样式重置 */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
-}
-
-:root {
-    --primary: #4a6cf7;
-    --primary-dark: #3a5ae0;
-    --secondary: #6c757d;
-    --success: #28a745;
-    --danger: #dc3545;
-    --warning: #ffc107;
-    --light: #f8f9fa;
-    --dark: #343a40;
-    --border: #e9ecef;
-    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    --radius: 8px;
-}
-
-body {
-    background-color: #f5f7ff;
-    color: #333;
-    line-height: 1.6;
-}
-
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
-/* 头部样式 */
-header {
-    background: linear-gradient(135deg, var(--primary) 0%, #6a11cb 100%);
-    color: white;
-    padding: 40px 0;
-    box-shadow: var(--shadow);
-    margin-bottom: 40px;
-}
-
-.header-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 20px;
-}
-
-.logo {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
-
-.logo i {
-    font-size: 2.5rem;
-}
-
-.logo h1 {
-    font-size: 2.2rem;
-    font-weight: 700;
-}
-
-.logo p {
-    opacity: 0.9;
-    font-size: 1.1rem;
-}
-
-.admin-badge {
-    background: rgba(255, 255, 255, 0.2);
-    padding: 2px 8px;
-    border-radius: 12px;
-    font-size: 0.8rem;
-    margin-left: 10px;
-}
-
-.search-box {
-    display: flex;
-    background: white;
-    border-radius: 30px;
-    overflow: hidden;
-    box-shadow: var(--shadow);
-}
-
-.search-box input {
-    border: none;
-    padding: 12px 20px;
-    width: 300px;
-    outline: none;
-    font-size: 1rem;
-}
-
-.search-box button {
-    background: var(--primary);
-    color: white;
-    border: none;
-    padding: 0 20px;
-    cursor: pointer;
-    transition: background 0.3s;
-}
-
-.search-box button:hover {
-    background: var(--primary-dark);
-}
-
-.admin-panel, .admin-link {
-    display: flex;
-    gap: 10px;
-}
-
-.admin-btn, .visitor-btn {
-    background: rgba(255, 255, 255, 0.2);
-    color: white;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    padding: 10px 15px;
-    border-radius: var(--radius);
-    cursor: pointer;
-    transition: all 0.3s;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    text-decoration: none;
-}
-
-.admin-btn:hover, .visitor-btn:hover {
-    background: rgba(255, 255, 255, 0.3);
-}
-
-.visitor-btn {
-    background: rgba(255, 255, 255, 0.1);
-}
-
-/* 季度导航样式 */
-.season-nav {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
-    margin-bottom: 40px;
-}
-
-.season-card {
-    background: white;
-    padding: 25px;
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-    text-align: center;
-    cursor: pointer;
-    transition: transform 0.3s, box-shadow 0.3s;
-    position: relative;
-    overflow: hidden;
-}
-
-.season-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 5px;
-}
-
-.winter::before {
-    background: linear-gradient(90deg, #74b9ff, #0984e3);
-}
-
-.spring::before {
-    background: linear-gradient(90deg, #fd79a8, #e84393);
-}
-
-.summer::before {
-    background: linear-gradient(90deg, #fdcb6e, #e17055);
-}
-
-.autumn::before {
-    background: linear-gradient(90deg, #00b894, #00cec9);
-}
-
-.season-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
-}
-
-.season-icon {
-    font-size: 2.5rem;
-    margin-bottom: 15px;
-}
-
-.season-card h3 {
-    font-size: 1.4rem;
-    margin-bottom: 8px;
-}
-
-.season-card p {
-    color: var(--secondary);
-    font-size: 0.95rem;
-}
-
-.count {
-    font-weight: bold;
-    color: var(--primary);
-}
-
-/* 季度资源汇总样式 */
-.season-resources {
-    background: white;
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-    padding: 25px;
-    margin-bottom: 30px;
-}
-
-.season-resources h3 {
-    margin-bottom: 20px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    color: var(--primary);
-}
-
-.resource-links {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 15px;
-}
-
-.resource-link {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 12px 15px;
-    background: var(--light);
-    border-radius: var(--radius);
-    text-decoration: none;
-    color: var(--dark);
-    transition: background 0.3s;
-}
-
-.resource-link:hover {
-    background: #e9ecef;
-}
-
-.resource-link i {
-    font-size: 1.2rem;
-}
-
-.resource-link.baidu i {
-    color: #4e6ef2;
-}
-
-.resource-link.ali i {
-    color: #ff6a00;
-}
-
-.resource-link.quark i {
-    color: #52c41a;
-}
-
-/* 筛选器样式 */
-.filters {
-    background: white;
-    padding: 25px;
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-    margin-bottom: 30px;
-}
-
-.filters h3 {
-    margin-bottom: 20px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    color: var(--primary);
-}
-
-.filter-row {
-    display: flex;
-    gap: 20px;
-    flex-wrap: wrap;
-}
-
-.filter-group {
-    flex: 1;
-    min-width: 200px;
-}
-
-.filter-group label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: 500;
-    color: var(--dark);
-}
-
-.filter-group select, .filter-group input {
-    width: 100%;
-    padding: 10px 15px;
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    font-size: 1rem;
-    outline: none;
-    transition: border 0.3s;
-}
-
-.filter-group select:focus, .filter-group input:focus {
-    border-color: var(--primary);
-}
-
-/* 分页信息 */
-.pagination-info {
-    text-align: center;
-    margin-bottom: 20px;
-    color: var(--secondary);
-    font-size: 0.95rem;
-}
-
-/* 剧集网格样式 */
-.drama-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 25px;
-    margin-bottom: 30px;
-}
-
-.drama-card {
-    background: white;
-    border-radius: var(--radius);
-    overflow: hidden;
-    box-shadow: var(--shadow);
-    transition: transform 0.3s, box-shadow 0.3s;
-    cursor: pointer;
-}
-
-.drama-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
-}
-
-.drama-poster {
-    width: 100%;
-    height: 200px;
-    position: relative;
-    overflow: hidden;
-}
-
-.drama-poster img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.3s;
-}
-
-.drama-card:hover .drama-poster img {
-    transform: scale(1.05);
-}
-
-.drama-poster .placeholder {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-size: 3rem;
-    height: 100%;
-    background: linear-gradient(45deg, #667eea, #764ba2);
-}
-
-.drama-badge {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background: rgba(0, 0, 0, 0.7);
-    color: white;
-    padding: 5px 10px;
-    border-radius: 20px;
-    font-size: 0.8rem;
-}
-
-.drama-actions {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    display: flex;
-    gap: 5px;
-    opacity: 0;
-    transition: opacity 0.3s;
-}
-
-.drama-card:hover .drama-actions {
-    opacity: 1;
-}
-
-.action-btn {
-    background: rgba(0, 0, 0, 0.7);
-    color: white;
-    border: none;
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: background 0.3s;
-}
-
-.action-btn:hover {
-    background: rgba(0, 0, 0, 0.9);
-}
-
-.drama-info {
-    padding: 20px;
-}
-
-.drama-title {
-    font-size: 1.3rem;
-    margin-bottom: 5px;
-    color: var(--dark);
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-}
-
-.drama-original-title {
-    font-size: 0.9rem;
-    color: var(--secondary);
-    margin-bottom: 10px;
-    font-style: italic;
-}
-
-.drama-meta {
-    display: flex;
-    gap: 15px;
-    margin-bottom: 15px;
-    font-size: 0.9rem;
-    color: var(--secondary);
-}
-
-.drama-meta span {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-}
-
-.drama-desc {
-    color: var(--secondary);
-    font-size: 0.95rem;
-    margin-bottom: 20px;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-}
-
-.drama-links {
-    display: flex;
-    justify-content: space-between;
-}
-
-.link-btn {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 8px 15px;
-    background: var(--primary);
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
-    font-size: 0.9rem;
-    transition: background 0.3s;
-    flex: 1;
-    justify-content: center;
-    margin: 0 5px;
-}
-
-.link-btn:hover {
-    background: var(--primary-dark);
-}
-
-.link-btn.baidu {
-    background: #4e6ef2;
-}
-
-.link-btn.ali {
-    background: #ff6a00;
-}
-
-.link-btn.quark {
-    background: #52c41a;
-}
-
-/* 分页样式 */
-.pagination {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 50px;
-}
-
-.page-btn {
-    padding: 8px 16px;
-    background: white;
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    cursor: pointer;
-    transition: all 0.3s;
-}
-
-.page-btn:hover:not(:disabled) {
-    background: var(--primary);
-    color: white;
-}
-
-.page-btn:disabled {
-    cursor: not-allowed;
-    opacity: 0.5;
-}
-
-.page-numbers {
-    display: flex;
-    gap: 5px;
-}
-
-.page-number {
-    padding: 8px 12px;
-    background: white;
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    cursor: pointer;
-    transition: all 0.3s;
-}
-
-.page-number:hover, .page-number.active {
-    background: var(--primary);
-    color: white;
-}
-
-/* 模态框样式 */
-.modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.7);
-    z-index: 1000;
-    overflow-y: auto;
-}
-
-.modal-content {
-    background: white;
-    margin: 50px auto;
-    width: 90%;
-    max-width: 800px;
-    border-radius: var(--radius);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    overflow: hidden;
-    animation: modalFade 0.3s;
-}
-
-.modal-content.large {
-    max-width: 900px;
-}
-
-@keyframes modalFade {
-    from { opacity: 0; transform: translateY(-50px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-.modal-header {
-    padding: 20px 25px;
-    background: linear-gradient(135deg, var(--primary) 0%, #6a11cb 100%);
-    color: white;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.modal-header h2 {
-    font-size: 1.5rem;
-}
-
-.close-btn {
-    background: none;
-    border: none;
-    color: white;
-    font-size: 1.5rem;
-    cursor: pointer;
-    width: 30px;
-    height: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.modal-body {
-    padding: 25px;
-}
-
-/* 剧集详情样式 */
-.drama-detail {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    gap: 25px;
-}
-
-.detail-poster {
-    width: 100%;
-    border-radius: var(--radius);
-    overflow: hidden;
-}
-
-.detail-poster img {
-    width: 100%;
-    height: auto;
-    display: block;
-}
-
-.detail-info {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-.detail-item {
-    display: flex;
-    border-bottom: 1px solid var(--border);
-    padding-bottom: 10px;
-}
-
-.detail-label {
-    font-weight: 600;
-    width: 100px;
-    flex-shrink: 0;
-    color: var(--dark);
-}
-
-.detail-value {
-    flex: 1;
-    color: var(--secondary);
-}
-
-.detail-links {
-    display: flex;
-    gap: 10px;
-    margin-top: 20px;
-}
-
-.detail-link {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 10px 20px;
-    background: var(--primary);
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
-    font-size: 1rem;
-    transition: background 0.3s;
-    flex: 1;
-    justify-content: center;
-}
-
-.detail-link:hover {
-    background: var(--primary-dark);
-}
-
-.detail-link.baidu {
-    background: #4e6ef2;
-}
-
-.detail-link.ali {
-    background: #ff6a00;
-}
-
-.detail-link.quark {
-    background: #52c41a;
-}
-
-/* 页脚样式 */
-footer {
-    background: var(--dark);
-    color: white;
-    padding: 40px 0;
-    text-align: center;
-}
-
-.footer-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-}
-
-.footer-links {
-    display: flex;
-    gap: 20px;
-    margin: 15px 0;
-}
-
-.footer-links a {
-    color: #adb5bd;
-    text-decoration: none;
-    transition: color 0.3s;
-}
-
-.footer-links a:hover {
-    color: white;
-}
-
-.copyright {
-    color: #6c757d;
-    font-size: 0.9rem;
-}
-
-/* 响应式设计 */
-@media (max-width: 992px) {
-    .season-nav {
-        grid-template-columns: repeat(2, 1fr);
+// 访问者版本功能
+class VisitorDramaManager {
+    constructor() {
+        this.dramas = Utils.loadData('dramaData', this.getDefaultData());
+        this.currentSeason = 'autumn';
+        this.currentPage = 1;
+        this.pageSize = 9;
+        this.filteredDramas = [];
+        this.init();
     }
-    
-    .header-content {
-        flex-direction: column;
-        gap: 20px;
+
+    // 默认数据
+    getDefaultData() {
+        return {
+            autumn: [
+                {
+                    id: Utils.generateId(),
+                    title: "silent love -无声的爱-",
+                    originalTitle: "サイレントラブ",
+                    day: "月曜",
+                    genre: ["爱情", "剧情"],
+                    year: "2025",
+                    season: "autumn",
+                    poster: "https://via.placeholder.com/300x450/667eea/ffffff?text=Silent+Love",
+                    desc: "讲述一名听力障碍女孩与普通男孩之间跨越障碍的纯爱故事。",
+                    rating: 8.7,
+                    director: "山田洋次",
+                    screenwriter: "坂元裕二",
+                    cast: ["佐藤健", "石原里美", "菅田将晖"],
+                    broadcast: "TBS电视台 每周一22:00",
+                    links: {
+                        baidu: "https://pan.baidu.com/s/1example1",
+                        ali: "https://www.aliyundrive.com/s/example1", 
+                        quark: "https://pan.quark.cn/s/example1"
+                    }
+                }
+            ],
+            winter: [],
+            spring: [],
+            summer: []
+        };
     }
-    
-    .search-box {
-        width: 100%;
-        max-width: 500px;
+
+    // 初始化
+    init() {
+        this.renderSeasonNav();
+        this.showSeason(this.currentSeason);
+        this.setupEventListeners();
     }
-    
-    .search-box input {
-        width: 100%;
+
+    // 渲染季度导航
+    renderSeasonNav() {
+        const seasonNav = document.querySelector('.season-nav');
+        
+        Object.keys(this.dramas).forEach(season => {
+            const count = this.dramas[season].length;
+            const seasonCard = seasonNav.querySelector(`[data-season="${season}"] .count`);
+            if (seasonCard) {
+                seasonCard.textContent = `${count}部剧集`;
+            }
+        });
     }
-    
-    .drama-detail {
-        grid-template-columns: 1fr;
+
+    // 显示指定季度的剧集
+    showSeason(season, page = 1) {
+        this.currentSeason = season;
+        this.currentPage = page;
+        
+        // 更新季度筛选器
+        document.getElementById('seasonFilter').value = season;
+        
+        // 更新季度资源汇总
+        this.updateSeasonResources(season);
+        
+        // 获取当前季度的剧集
+        const dramas = this.dramas[season] || [];
+        
+        // 应用筛选
+        this.filteredDramas = this.applyFiltersToDramas(dramas);
+        
+        // 分页
+        const pagination = Utils.paginate(this.filteredDramas, page, this.pageSize);
+        
+        // 渲染剧集
+        this.renderDramas(pagination.data);
+        
+        // 渲染分页
+        this.renderPagination(pagination);
+        
+        // 更新季度计数
+        this.renderSeasonNav();
+    }
+
+    // 应用筛选到剧集列表
+    applyFiltersToDramas(dramas) {
+        const yearFilter = document.getElementById('yearFilter').value;
+        const genreFilter = document.getElementById('genreFilter').value;
+        
+        return dramas.filter(drama => {
+            let include = true;
+            
+            if (yearFilter && drama.year !== yearFilter) include = false;
+            if (genreFilter && !drama.genre.includes(genreFilter)) include = false;
+            
+            return include;
+        });
+    }
+
+    // 渲染剧集列表
+    renderDramas(dramas) {
+        const container = document.getElementById('dramaList');
+        container.innerHTML = dramas.map(drama => this.createDramaCard(drama)).join('');
+    }
+
+    // 创建剧集卡片HTML
+    createDramaCard(drama) {
+        return `
+            <div class="drama-card" data-id="${drama.id}" data-year="${drama.year}" data-season="${drama.season}" data-day="${drama.day}" data-genre="${drama.genre.join(',')}">
+                <div class="drama-poster">
+                    ${drama.poster ? 
+                        `<img src="${drama.poster}" alt="${drama.title}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                         <div class="placeholder" style="display:none;"><i class="fas fa-film"></i></div>` :
+                        `<div class="placeholder"><i class="fas fa-film"></i></div>`
+                    }
+                    <div class="drama-badge">${drama.day}</div>
+                </div>
+                <div class="drama-info">
+                    <h3 class="drama-title">${drama.title}</h3>
+                    <div class="drama-original-title">${drama.originalTitle}</div>
+                    <div class="drama-meta">
+                        <span><i class="fas fa-star" style="color: #ffc107;"></i> 豆瓣 ${drama.rating}</span>
+                        <span><i class="fas fa-tags"></i> ${drama.genre.join(' · ')}</span>
+                    </div>
+                    <p class="drama-desc">${drama.desc}</p>
+                    <div class="drama-links">
+                        <a href="${drama.links.baidu}" target="_blank" class="link-btn baidu" onclick="event.stopPropagation()"><i class="fas fa-cloud"></i> 百度网盘</a>
+                        <a href="${drama.links.ali}" target="_blank" class="link-btn ali" onclick="event.stopPropagation()"><i class="fas fa-cloud-download-alt"></i> 阿里云盘</a>
+                        <a href="${drama.links.quark}" target="_blank" class="link-btn quark" onclick="event.stopPropagation()"><i class="fas fa-bolt"></i> 夸克网盘</a>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    // 更新季度资源汇总
+    updateSeasonResources(season) {
+        const resources = this.getSeasonResources(season);
+        const container = document.getElementById('seasonResources');
+        
+        container.innerHTML = `
+            <h3><i class="fas fa-cloud-download-alt"></i> ${resources.title}</h3>
+            <div class="resource-links">
+                ${resources.links.map(link => `
+                    <a href="${link.url}" target="_blank" class="resource-link ${link.type}">
+                        <i class="fas fa-cloud"></i>
+                        <span>${link.text}</span>
+                    </a>
+                `).join('')}
+            </div>
+        `;
+    }
+
+    // 获取季度资源数据
+    getSeasonResources(season) {
+        const seasonNames = {
+            winter: "冬季",
+            spring: "春季", 
+            summer: "夏季",
+            autumn: "秋季"
+        };
+        
+        const year = "2025";
+        const seasonName = seasonNames[season];
+        
+        return {
+            title: `${year}${seasonName}日剧资源汇总`,
+            links: [
+                { type: "baidu", text: `${year}${seasonName}日剧百度网盘合集`, url: "#" },
+                { type: "ali", text: `${year}${seasonName}日剧阿里云盘合集`, url: "#" },
+                { type: "quark", text: `${year}${seasonName}日剧夸克网盘合集`, url: "#" }
+            ]
+        };
+    }
+
+    // 渲染分页
+    renderPagination(pagination) {
+        const { totalPages, totalItems, data } = pagination;
+        const currentPage = this.currentPage;
+        
+        // 更新分页信息
+        document.getElementById('paginationText').textContent = 
+            `第 ${currentPage} 页，共 ${totalPages} 页，${totalItems} 部剧集`;
+        
+        // 更新分页按钮
+        document.getElementById('prevPage').disabled = currentPage === 1;
+        document.getElementById('nextPage').disabled = currentPage === totalPages;
+        
+        // 渲染页码
+        const pageNumbers = document.getElementById('pageNumbers');
+        pageNumbers.innerHTML = '';
+        
+        for (let i = 1; i <= totalPages; i++) {
+            const pageBtn = document.createElement('button');
+            pageBtn.className = `page-number ${i === currentPage ? 'active' : ''}`;
+            pageBtn.textContent = i;
+            pageBtn.addEventListener('click', () => {
+                this.showSeason(this.currentSeason, i);
+            });
+            pageNumbers.appendChild(pageBtn);
+        }
+    }
+
+    // 打开剧集详情模态框
+    openDramaModal(dramaId) {
+        const drama = this.findDramaById(dramaId);
+        if (!drama) return;
+        
+        // 更新模态框内容
+        document.getElementById('modalTitle').textContent = drama.title;
+        document.getElementById('modalContent').innerHTML = this.createDramaDetailHTML(drama);
+        
+        // 显示模态框
+        document.getElementById('dramaModal').style.display = 'block';
+    }
+
+    // 创建剧集详情HTML
+    createDramaDetailHTML(drama) {
+        return `
+            <div class="drama-detail">
+                <div class="detail-poster">
+                    ${drama.poster ? 
+                        `<img src="${drama.poster}" alt="${drama.title}">` :
+                        `<div class="placeholder"><i class="fas fa-film"></i></div>`
+                    }
+                </div>
+                <div class="detail-info">
+                    <div class="detail-item">
+                        <div class="detail-label">原名</div>
+                        <div class="detail-value">${drama.originalTitle}</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">豆瓣评分</div>
+                        <div class="detail-value">${drama.rating}</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">类型</div>
+                        <div class="detail-value">${drama.genre.join(' / ')}</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">导演</div>
+                        <div class="detail-value">${drama.director}</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">编剧</div>
+                        <div class="detail-value">${drama.screenwriter}</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">主演</div>
+                        <div class="detail-value">${Array.isArray(drama.cast) ? drama.cast.join(' / ') : drama.cast}</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">播出信息</div>
+                        <div class="detail-value">${drama.broadcast}</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">简介</div>
+                        <div class="detail-value">${drama.desc}</div>
+                    </div>
+                    <div class="detail-links">
+                        <a href="${drama.links.baidu}" target="_blank" class="detail-link baidu"><i class="fas fa-cloud"></i> 百度网盘</a>
+                        <a href="${drama.links.ali}" target="_blank" class="detail-link ali"><i class="fas fa-cloud-download-alt"></i> 阿里云盘</a>
+                        <a href="${drama.links.quark}" target="_blank" class="detail-link quark"><i class="fas fa-bolt"></i> 夸克网盘</a>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    // 根据ID查找剧集
+    findDramaById(id) {
+        for (const season in this.dramas) {
+            const drama = this.dramas[season].find(d => d.id === id);
+            if (drama) return drama;
+        }
+        return null;
+    }
+
+    // 搜索功能
+    searchDramas(term) {
+        const dramas = this.dramas[this.currentSeason] || [];
+        this.filteredDramas = dramas.filter(drama => {
+            const title = drama.title.toLowerCase();
+            const originalTitle = drama.originalTitle.toLowerCase();
+            const desc = drama.desc.toLowerCase();
+            const genre = drama.genre.join(' ').toLowerCase();
+            const cast = Array.isArray(drama.cast) ? drama.cast.join(' ').toLowerCase() : drama.cast.toLowerCase();
+            
+            return title.includes(term) || 
+                   originalTitle.includes(term) || 
+                   desc.includes(term) || 
+                   genre.includes(term) ||
+                   cast.includes(term);
+        });
+        
+        // 重置到第一页
+        this.currentPage = 1;
+        
+        // 分页
+        const pagination = Utils.paginate(this.filteredDramas, this.currentPage, this.pageSize);
+        
+        // 渲染剧集
+        this.renderDramas(pagination.data);
+        
+        // 渲染分页
+        this.renderPagination(pagination);
+    }
+
+    // 设置事件监听器
+    setupEventListeners() {
+        // 季度导航点击
+        document.querySelectorAll('.season-card').forEach(card => {
+            card.addEventListener('click', () => {
+                const season = card.dataset.season;
+                this.showSeason(season);
+            });
+        });
+        
+        // 筛选器变化
+        document.getElementById('yearFilter').addEventListener('change', () => {
+            this.showSeason(this.currentSeason, 1);
+        });
+        
+        document.getElementById('seasonFilter').addEventListener('change', () => {
+            const season = document.getElementById('seasonFilter').value;
+            if (season) {
+                this.showSeason(season, 1);
+            }
+        });
+        
+        document.getElementById('genreFilter').addEventListener('change', () => {
+            this.showSeason(this.currentSeason, 1);
+        });
+        
+        // 搜索功能
+        const searchHandler = Utils.debounce(() => {
+            const searchTerm = document.querySelector('.search-box input').value.toLowerCase();
+            if (searchTerm) {
+                this.searchDramas(searchTerm);
+            } else {
+                this.showSeason(this.currentSeason, 1);
+            }
+        }, 300);
+        
+        document.querySelector('.search-box button').addEventListener('click', searchHandler);
+        document.querySelector('.search-box input').addEventListener('input', searchHandler);
+        document.querySelector('.search-box input').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') searchHandler();
+        });
+        
+        // 剧集卡片点击
+        document.addEventListener('click', (e) => {
+            const dramaCard = e.target.closest('.drama-card');
+            if (dramaCard && !e.target.closest('.link-btn')) {
+                const dramaId = dramaCard.dataset.id;
+                this.openDramaModal(dramaId);
+            }
+        });
+        
+        // 分页按钮
+        document.getElementById('prevPage').addEventListener('click', () => {
+            if (this.currentPage > 1) {
+                this.showSeason(this.currentSeason, this.currentPage - 1);
+            }
+        });
+        
+        document.getElementById('nextPage').addEventListener('click', () => {
+            const totalPages = Math.ceil(this.filteredDramas.length / this.pageSize);
+            if (this.currentPage < totalPages) {
+                this.showSeason(this.currentSeason, this.currentPage + 1);
+            }
+        });
+        
+        // 模态框关闭
+        document.querySelectorAll('.close-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const modal = e.target.closest('.modal');
+                if (modal) {
+                    modal.style.display = 'none';
+                }
+            });
+        });
+        
+        // 点击模态框外部关闭
+        window.addEventListener('click', (e) => {
+            if (e.target.classList.contains('modal')) {
+                e.target.style.display = 'none';
+            }
+        });
     }
 }
 
-@media (max-width: 768px) {
-    .season-nav {
-        grid-template-columns: 1fr;
-    }
-    
-    .drama-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .drama-links {
-        flex-direction: column;
-        gap: 10px;
-    }
-    
-    .link-btn {
-        margin: 0;
-    }
-    
-    .detail-links {
-        flex-direction: column;
-    }
-    
-    .admin-panel, .admin-link {
-        width: 100%;
-        justify-content: center;
-    }
-}
+// 初始化访问者版本
+document.addEventListener('DOMContentLoaded', function() {
+    window.visitorManager = new VisitorDramaManager();
+});
