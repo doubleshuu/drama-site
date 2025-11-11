@@ -69,6 +69,14 @@ header {
     font-size: 1.1rem;
 }
 
+.admin-badge {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    margin-left: 10px;
+}
+
 .search-box {
     display: flex;
     background: white;
@@ -98,12 +106,12 @@ header {
     background: var(--primary-dark);
 }
 
-.admin-panel {
+.admin-panel, .admin-link {
     display: flex;
     gap: 10px;
 }
 
-.admin-btn {
+.admin-btn, .visitor-btn {
     background: rgba(255, 255, 255, 0.2);
     color: white;
     border: 1px solid rgba(255, 255, 255, 0.3);
@@ -114,10 +122,15 @@ header {
     display: flex;
     align-items: center;
     gap: 8px;
+    text-decoration: none;
 }
 
-.admin-btn:hover {
+.admin-btn:hover, .visitor-btn:hover {
     background: rgba(255, 255, 255, 0.3);
+}
+
+.visitor-btn {
+    background: rgba(255, 255, 255, 0.1);
 }
 
 /* 季度导航样式 */
@@ -294,12 +307,20 @@ header {
     border-color: var(--primary);
 }
 
+/* 分页信息 */
+.pagination-info {
+    text-align: center;
+    margin-bottom: 20px;
+    color: var(--secondary);
+    font-size: 0.95rem;
+}
+
 /* 剧集网格样式 */
 .drama-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 25px;
-    margin-bottom: 50px;
+    margin-bottom: 30px;
 }
 
 .drama-card {
@@ -469,6 +490,53 @@ header {
     background: #52c41a;
 }
 
+/* 分页样式 */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 50px;
+}
+
+.page-btn {
+    padding: 8px 16px;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.page-btn:hover:not(:disabled) {
+    background: var(--primary);
+    color: white;
+}
+
+.page-btn:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+.page-numbers {
+    display: flex;
+    gap: 5px;
+}
+
+.page-number {
+    padding: 8px 12px;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.page-number:hover, .page-number.active {
+    background: var(--primary);
+    color: white;
+}
+
 /* 模态框样式 */
 .modal {
     display: none;
@@ -612,106 +680,6 @@ header {
     background: #52c41a;
 }
 
-/* 表单样式 */
-.form-row {
-    display: flex;
-    gap: 20px;
-    margin-bottom: 20px;
-}
-
-.form-group {
-    flex: 1;
-    margin-bottom: 20px;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: 500;
-    color: var(--dark);
-}
-
-.form-group input,
-.form-group select,
-.form-group textarea {
-    width: 100%;
-    padding: 10px 15px;
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    font-size: 1rem;
-    outline: none;
-    transition: border 0.3s;
-}
-
-.form-group input:focus,
-.form-group select:focus,
-.form-group textarea:focus {
-    border-color: var(--primary);
-}
-
-.form-group textarea {
-    resize: vertical;
-    min-height: 80px;
-}
-
-.checkbox-group {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-}
-
-.checkbox-item {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-}
-
-.checkbox-item input {
-    width: auto;
-}
-
-.form-actions {
-    display: flex;
-    justify-content: flex-end;
-    gap: 10px;
-    margin-top: 30px;
-}
-
-.btn {
-    padding: 10px 20px;
-    border: none;
-    border-radius: var(--radius);
-    cursor: pointer;
-    font-size: 1rem;
-    transition: all 0.3s;
-}
-
-.btn-primary {
-    background: var(--primary);
-    color: white;
-}
-
-.btn-primary:hover {
-    background: var(--primary-dark);
-}
-
-.btn-secondary {
-    background: var(--secondary);
-    color: white;
-}
-
-.btn-secondary:hover {
-    background: #5a6268;
-}
-
-.douban-result {
-    margin-top: 20px;
-    padding: 15px;
-    background: var(--light);
-    border-radius: var(--radius);
-    display: none;
-}
-
 /* 页脚样式 */
 footer {
     background: var(--dark);
@@ -771,11 +739,6 @@ footer {
     .drama-detail {
         grid-template-columns: 1fr;
     }
-    
-    .form-row {
-        flex-direction: column;
-        gap: 0;
-    }
 }
 
 @media (max-width: 768px) {
@@ -800,7 +763,7 @@ footer {
         flex-direction: column;
     }
     
-    .admin-panel {
+    .admin-panel, .admin-link {
         width: 100%;
         justify-content: center;
     }
