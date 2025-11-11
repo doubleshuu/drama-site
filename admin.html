@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>日剧档案馆 - 管理员后台</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="admin-body">
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-tv"></i>
+                    <div>
+                        <h1>日剧档案馆 <span class="admin-badge">管理员</span></h1>
+                        <p>2025年度日剧季度分类浏览 - 管理后台</p>
+                    </div>
+                </div>
+                <div class="search-box">
+                    <input type="text" placeholder="搜索剧集、演员或类型...">
+                    <button><i class="fas fa-search"></i></button>
+                </div>
+                <div class="admin-panel">
+                    <button id="addDramaBtn" class="admin-btn">
+                        <i class="fas fa-plus"></i> 添加剧集
+                    </button>
+                    <button id="importDoubanBtn" class="admin-btn">
+                        <i class="fas fa-download"></i> 豆瓣导入
+                    </button>
+                    <a href="index.html" class="admin-btn visitor-btn">
+                        <i class="fas fa-eye"></i> 访问者视图
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="admin-stats">
+            <div class="stat-card">
+                <div class="stat-icon total">
+                    <i class="fas fa-film"></i>
+                </div>
+                <div class="stat-info">
+                    <h3 id="totalDramas">0</h3>
+                    <p>总剧集数</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon autumn">
+                    <i class="fas fa-leaf"></i>
+                </div>
+                <div class="stat-info">
+                    <h3 id="autumnDramas">0</h3>
+                    <p>秋季剧集</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon winter">
+                    <i class="fas fa-snowflake"></i>
+                </div>
+                <div class="stat-info">
+                    <h3 id="winterDramas">0</h3>
+                    <p>冬季剧集</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-card">
+                <div class="stat-icon spring">
+                    <i class="fas fa-seedling"></i>
+                </div>
+                <div class="stat-info">
+                    <h3 id="springDramas">0</h3>
+                    <p>春季剧集</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon summer">
+                    <i class="fas fa-sun"></i>
+                </div>
+                <div class="stat-info">
+                    <h3 id="summerDramas">0</h3>
+                    <p>夏季剧集</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="season-nav">
+            <div class="season-card winter" data-season="winter">
+                <div class="season-icon">❄️</div>
+                <h3>2025冬季日剧</h3>
+                <p>1月-3月播出</p>
+                <p class="count">0部剧集</p>
+            </div>
+            <div class="season-card spring" data-season="spring">
+                <div class="season-icon">🌸</div>
+                <h3>2025春季日剧</h3>
+                <p>4月-6月播出</p>
+                <p class="count">0部剧集</p>
+            </div>
+            <div class="season-card summer" data-season="summer">
+                <div class="season-icon">🌞</div>
+                <h3>2025夏季日剧</h3>
+                <p>7月-9月播出</p>
+                <p class="count">0部剧集</p>
+            </div>
+            <div class="season-card autumn" data-season="autumn">
+                <div class="season-icon">🍁</div>
+                <h3>2025秋季日剧</h3>
+                <p>10月-12月播出</p>
+                <p class="count">0部剧集</p>
+            </div>
+        </div>
+
+        <div id="seasonResources" class="season-resources">
+            <h3><i class="fas fa-cloud-download-alt"></i> 季度资源汇总</h3>
+            <div class="resource-links"></div>
+        </div>
+
+        <div class="filters">
+            <h3><i class="fas fa-filter"></i> 筛选条件</h3>
+            <div class="filter-row">
+                <div class="filter-group">
+                    <label for="yearFilter">播出年份</label>
+                    <select id="yearFilter">
+                        <option value="">全部年份</option>
+                        <option value="2025" selected>2025年</option>
+                        <option value="2024">2024年</option>
+                        <option value="2023">2023年</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="seasonFilter">播出季度</label>
+                    <select id="seasonFilter">
+                        <option value="">全部季度</option>
+                        <option value="winter">冬季</option>
+                        <option value="spring">春季</option>
+                        <option value="summer">夏季</option>
+                        <option value="autumn">秋季</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="genreFilter">剧情类型</label>
+                    <select id="genreFilter">
+                        <option value="">全部类型</option>
+                        <option value="爱情">爱情</option>
+                        <option value="悬疑">悬疑</option>
+                        <option value="医疗">医疗</option>
+                        <option value="律政">律政</option>
+                        <option value="校园">校园</option>
+                        <option value="家庭">家庭</option>
+                        <option value="职场">职场</option>
+                        <option value="科幻">科幻</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="pagination-info">
+            <span id="paginationText">第 1 页，共 1 页，0 部剧集</span>
+        </div>
+
+        <div id="dramaList" class="drama-grid"></div>
+
+        <div class="pagination">
+            <button id="prevPage" class="page-btn" disabled>上一页</button>
+            <div id="pageNumbers" class="page-numbers"></div>
+            <button id="nextPage" class="page-btn" disabled>下一页</button>
+        </div>
+    </div>
+
+    <div id="dramaModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">剧集标题</h2>
+                <button class="close-btn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div id="modalContent"></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="editDramaModal" class="modal">
+        <div class="modal-content large">
+            <div class="modal-header">
+                <h2 id="editModalTitle">添加新剧集</h2>
+                <button class="close-btn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="dramaForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="dramaTitle">剧集名称 *</label>
+                            <input type="text" id="dramaTitle" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="dramaOriginalTitle">原名</label>
+                            <input type="text" id="dramaOriginalTitle">
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="dramaSeason">季度 *</label>
+                            <select id="dramaSeason" required>
+                                <option value="winter">冬季</option>
+                                <option value="spring">春季</option>
+                                <option value="summer">夏季</option>
+                                <option value="autumn" selected>秋季</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="dramaYear">年份 *</label>
+                            <input type="number" id="dramaYear" value="2025" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="dramaDay">播出星期</label>
+                            <select id="dramaDay">
+                                <option value="月曜">星期一</option>
+                                <option value="火曜">星期二</option>
+                                <option value="水曜">星期三</option>
+                                <option value="木曜">星期四</option>
+                                <option value="金曜">星期五</option>
+                                <option value="土曜">星期六</option>
+                                <option value="日曜">星期日</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="dramaGenre">类型 *</label>
+                        <div class="checkbox-group" id="dramaGenre"></div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="dramaRating">豆瓣评分</label>
+                            <input type="number" id="dramaRating" min="0" max="10" step="0.1">
+                        </div>
+                        <div class="form-group">
+                            <label for="dramaPoster">海报URL</label>
+                            <div class="upload-group">
+                                <input type="url" id="dramaPoster">
+                                <button type="button" id="uploadPosterBtn" class="upload-btn">
+                                    <i class="fas fa-upload"></i> 上传图片
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="dramaDesc">剧情简介</label>
+                        <textarea id="dramaDesc" rows="3"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="dramaDirector">导演</label>
+                        <input type="text" id="dramaDirector">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="dramaScreenwriter">编剧</label>
+                        <input type="text" id="dramaScreenwriter">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="dramaCast">主演</label>
+                        <input type="text" id="dramaCast" placeholder="用逗号分隔多个演员">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="dramaBroadcast">播出信息</label>
+                        <input type="text" id="dramaBroadcast">
+                    </div>
+                    
+                    <h3>资源链接</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="dramaBaidu">百度网盘</label>
+                            <input type="url" id="dramaBaidu">
+                        </div>
+                        <div class="form-group">
+                            <label for="dramaAli">阿里云盘</label>
+                            <input type="url" id="dramaAli">
+                        </div>
+                        <div class="form-group">
+                            <label for="dramaQuark">夸克网盘</label>
+                            <input type="url" id="dramaQuark">
+                        </div>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="button" id="cancelBtn" class="btn btn-secondary">取消</button>
+                        <button type="submit" id="saveDramaBtn" class="btn btn-primary">保存剧集</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div id="doubanModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>从豆瓣导入剧集信息</h2>
+                <button class="close-btn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="doubanUrl">豆瓣电影/剧集URL</label>
+                    <input type="url" id="doubanUrl" placeholder="例如: https://movie.douban.com/subject/1234567/">
+                </div>
+                <div class="form-actions">
+                    <button type="button" id="cancelDoubanBtn" class="btn btn-secondary">取消</button>
+                    <button type="button" id="fetchDoubanBtn" class="btn btn-primary">获取信息</button>
+                </div>
+                <div id="doubanResult" class="douban-result"></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="imageUploadModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>上传图片</h2>
+                <button class="close-btn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="upload-area" id="uploadArea">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                    <p>点击或拖拽图片到这里</p>
+                    <input type="file" id="imageFile" accept="image/*" style="display: none;">
+                </div>
+                <div class="upload-preview" id="uploadPreview" style="display: none;">
+                    <img id="previewImage" src="" alt="预览">
+                    <div class="preview-actions">
+                        <button id="confirmUpload" class="btn btn-primary">使用此图片</button>
+                        <button id="cancelUpload" class="btn btn-secondary">重新选择</button>
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <button type="button" id="closeUploadBtn" class="btn btn-secondary">关闭</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="logo">
+                    <i class="fas fa-tv"></i>
+                    <h2>日剧档案馆 <span class="admin-badge">管理员</span></h2>
+                </div>
+                <p>专注于日本电视剧的整理与分享 - 管理后台</p>
+                <div class="footer-links">
+                    <a href="#">关于我们</a>
+                    <a href="#">使用条款</a>
+                    <a href="#">隐私政策</a>
+                    <a href="#">联系我们</a>
+                </div>
+                <div class="copyright">
+                    <p>&copy; 2025 日剧档案馆 版权所有</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/utils.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+</html>
